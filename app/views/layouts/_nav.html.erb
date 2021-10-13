@@ -12,29 +12,29 @@
         <li class="nav-item active my-3 mx-3">
           <%= link_to "商品一覧", items_path %>
         </li>
-      <% if user_signed_in? %>
+      <% if customer_signed_in? %>
         <li class="nav-item active my-3 mx-3">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
         </li>
-      <%# elsif user_signed_in? && user_signed_in.admin? %>
-        <!--<li class="nav-item active my-3 mx-3">-->
-        <!--  <%= link_to "会員一覧", new_user_registration_path %>-->
-        <!--</li>-->
-        <!--<li class="nav-item active my-3 mx-3">-->
-        <!--  <%= link_to "注文履歴", new_user_session_path %>-->
-        <!--</li>-->
-        <!--<li class="nav-item active my-3 mx-3">-->
-        <!--  <%= link_to "ジャンル一覧", new_user_registration_path %>-->
-        <!--</li>-->
-        <!--<li class="nav-item active my-3 mx-3">-->
-        <!--  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
-        <!--</li>-->
+      <% elsif admin_signed_in? %>
+        <li class="nav-item active my-3 mx-3">
+          <%= link_to "会員一覧", root_path %>
+        </li>
+        <li class="nav-item active my-3 mx-3">
+          <%= link_to "注文履歴", root_path %>
+        </li>
+        <li class="nav-item active my-3 mx-3">
+          <%= link_to "ジャンル一覧", root_path %>
+        </li>
+        <li class="nav-item active my-3 mx-3">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        </li>
       <% else %>
         <li class="nav-item active my-3 mx-3">
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "新規登録", new_customer_registration_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ログイン", new_customer_session_path %>
         </li>
       <% end %>
       </ul>
