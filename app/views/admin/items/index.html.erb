@@ -1,0 +1,5 @@
+<%= link_to "+", new_admin_item_path %>
+
+<% @items.each do |item| %>
+  <%= item.name %><%= link_to "詳細", admin_item_path(item), class: "btn btn-success"%>
+<% end %>

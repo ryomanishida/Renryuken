@@ -9,22 +9,25 @@
         <li class="nav-item active my-3 mx-3">
           <%= link_to "Home", root_path %>
         </li>
+      <% if customer_signed_in? %>
         <li class="nav-item active my-3 mx-3">
           <%= link_to "商品一覧", items_path %>
         </li>
-      <% if customer_signed_in? %>
         <li class="nav-item active my-3 mx-3">
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
         </li>
       <% elsif admin_signed_in? %>
         <li class="nav-item active my-3 mx-3">
-          <%= link_to "会員一覧", root_path %>
+          <%= link_to "商品一覧", admin_items_path %>
+        </li>
+        <li class="nav-item active my-3 mx-3">
+          <%= link_to "会員一覧", admin_customers_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
           <%= link_to "注文履歴", root_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
-          <%= link_to "ジャンル一覧", root_path %>
+          <%= link_to "ジャンル一覧", genres_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
