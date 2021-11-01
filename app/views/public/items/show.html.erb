@@ -4,7 +4,8 @@
 <%= @item.price %>円
 <%= @item.genre.name %>
 <%= @item.introduction %>
-<%= form_with model: @item, url: , local:true do |f| %>
+<%= form_with model: @cart_item, url: cart_items_path , local: true do |f| %>
+  <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.select :amount, [[1,1],[2,2],[3,3]], include_blank: "選択してください" %>
   <%= f.submit "カートに追加" %>
 <% end %>
