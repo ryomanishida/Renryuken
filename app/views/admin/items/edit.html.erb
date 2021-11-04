@@ -1,0 +1,25 @@
+<h1>商品編集</h1>
+<%= form_with model: @item, url: admin_item_path, local: true do |f| %>
+  <div>
+    <%= f.label :image, "商品画像" %>
+    <%= f.attachment_field :image %>
+  </div>
+  <div>
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :introduction, "説明" %>
+    <%= f.text_area :introduction %>
+  </div>
+  <div>
+    <%= f.label :genre_id, "ジャンル" %>
+    <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "選択してください"}) %>
+    <!--第三引数のvalue(今回id)が選択した時に送られる値-->
+  </div>
+  <div>
+    <%= f.label :price, "税抜価格" %>
+    <%= f.text_field :price %>
+  </div>
+  <%= f.submit "編集確定" %>
+<% end %>
