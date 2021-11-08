@@ -40,9 +40,10 @@ Rails.application.routes.draw do
 
   # 会員
   resources 'items', only: [:index, :show], to: 'public/items#'
-  resources 'cart_items', only: [:index, :create, :update, :destroy], to: 'public/cart_items#'
+
   delete '/cart_items/destroy_all', to: 'public/cart_items#destroy_all'
-  
+  resources 'cart_items', only: [:index, :create, :update, :destroy], to: 'public/cart_items#'
+
 end
 
 

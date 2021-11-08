@@ -1,5 +1,15 @@
+<h1>ショッピングカート</h1>
+<%= link_to "全て削除", cart_items_destroy_all_path, method: :delete %><br>
 <% @cart_items.each do |cart_item| %>
+    <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100 %>
     <%= cart_item.item.name %>
     <%= cart_item.amount %>個
+    <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true do |f| %>
+      <%= f.hidden_field :item_id, value: cart_item.item.id %>
+      <%= f.select :amount, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], prompt: cart_item.amount %>
+      <%= f.submit "変更する" %>
+    <% end %>
     <%= cart_item.item.price %>円
+    <%= link_to "削除", cart_item_path(cart_item), method: :delete %>
+    <hr>
 <% end %>
