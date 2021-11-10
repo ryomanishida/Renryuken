@@ -1,0 +1,33 @@
+<h1>注文情報確認画面</h1>
+<%= link_to "戻る", new_order_path %><br>
+
+<% @sum = 0 %>
+<% @cart_items.each do |cart_item| %>
+  <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100 %>
+  <%= cart_item.item.name %>
+  <%= cart_item.amount %>個
+  小計<%= cart_item.amount * cart_item.item.price %>
+  <%= cart_item.item.price %>円
+  <%= link_to "削除", cart_item_path(cart_item), method: :delete %>
+  <hr>
+  <% @sum += cart_item.amount * cart_item.item.price %>
+<% end %>
+送料　800円
+合計金額<%= @sum.to_s(:delimited) %>
+請求金額<%= (@sum + 800).to_s(:delimited) %>
+
+<h2>お支払い方法</h2>
+<%= @order.payment_method %>
+<h2>お届け先</h2>
+〒<%= @order.postal_code %><%= @order.address %><%= @order.name %>
+
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.hidden_field :shipping_cost, value: 800 %>
+  <%= f.hidden_field :total_payment, value: @sum + 800 %>
+  <%= f.hidden_field :postal_code, value: @order.postal_code %>
+  <%= f.hidden_field :address, value: @order.address %>
+  <%= f.hidden_field :name, value: @order.name %>
+  <%= f.hidden_field :status, value: "入金待ち" %>
+  <%= f.submit "注文確定" %>
+<% end %>

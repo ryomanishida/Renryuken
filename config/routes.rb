@@ -37,13 +37,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit]
   end
+  get '/admin/order_details/:id', to: 'admin/order_details#update'
 
   # 会員
   resources 'items', only: [:index, :show], to: 'public/items#'
-
   delete '/cart_items/destroy_all', to: 'public/cart_items#destroy_all'
   resources 'cart_items', only: [:index, :create, :update, :destroy], to: 'public/cart_items#'
-
   post '/orders/confirm', to: 'public/orders#confirm'
   get '/orders/complete', to: 'public/orders#complete'
   resources 'orders', only: [:index, :show, :new, :create], to: 'public/orders#'

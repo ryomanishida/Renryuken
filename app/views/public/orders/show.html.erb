@@ -1,2 +1,8 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h1>注文履歴詳細</h1>
+<%= @order.created_at %>
+〒<%= @order.postal_code %>
+<%= @order.address %>
+<%= @order.name %>
+<%= @order.total_payment %>円
+<%= @order.status %>
+
