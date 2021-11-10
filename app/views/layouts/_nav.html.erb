@@ -17,6 +17,9 @@
           <%= link_to "カート", cart_items_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
+          <%= link_to "リスト", cart_items_path %>
+        </li>
+        <li class="nav-item active my-3 mx-3">
           <%= link_to "マイページ", cart_items_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
@@ -34,6 +37,9 @@
         </li>
         <li class="nav-item active my-3 mx-3">
           <%= link_to "ジャンル一覧", genres_path %>
+        </li>
+        <li class="nav-item active my-3 mx-3">
+          <%= link_to "分析", genres_path %>
         </li>
         <li class="nav-item active my-3 mx-3">
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
