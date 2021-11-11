@@ -1,33 +1,19 @@
 Rails.application.routes.draw do
-
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/create'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/new'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-  end
   root to: 'homes#top'
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
 
-  devise_for :customers, controllers: {
-  sessions:      'customers/sessions',
-  passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
-}
+  devise_for :customers, skip: :all
+  devise_scope :customer do
+    get '/customers/sign_up' => 'public/registrations#new'
+    post '/customers' => 'public/registrations#create'
+    get '/customers/sign_in' => 'public/sessions#new'
+    post '/customers/sign_in' => 'public/sessions#create'
+    delete '/customers/sign_out' => 'public/sessions#destroy'
+    patch '/customers/withdraw' => 'public/customers#withdraw'
+  end
 
   # 管理者
   namespace :admin do
@@ -46,27 +32,14 @@ Rails.application.routes.draw do
   post '/orders/confirm', to: 'public/orders#confirm'
   get '/orders/complete', to: 'public/orders#complete'
   resources 'orders', only: [:index, :show, :new, :create], to: 'public/orders#'
-
+  resource 'customers', only: [:edit, :update], to: 'public/customers#'
+  get '/customers/my_page', to: 'public/customers#show'
+  get '/customers/unsubscribe', to: 'public/customers#unsubscribe'
 end
 
 
 
 
-
-#   devise_for :customers, skip: :all
-#   devise_scope :customer do
-#     get '/customers/sign_up' => 'public/registrations#new'
-#     post '/customers' => 'public/registrations#create'
-#     get '/customers/sign_in' => 'public/sessions#new'
-#     post '/customers/sign_in' => 'public/sessions#create'
-#     delete '/customers/sign_out' => 'public/sessions#destroy'
-#     patch '/customers/withdraw' => 'public/customers#withdraw'
-#   end
-
-#   devise_for :admin, controllers: {
-#     sessions: 'admin/sessions'
-#   }
-#   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 # # Admin
 #   get '/admin', to: 'admin/homes#top'
