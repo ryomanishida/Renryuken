@@ -38,18 +38,9 @@ Rails.application.routes.draw do
 end
 
 
-
-
-
 # # Admin
-#   get '/admin', to: 'admin/homes#top'
-
 #   namespace :admin do
 #     resources :items, except: [:destroy]
-#   end
-
-#   namespace :admin do
-#     resources :genres, only: [:index, :create, :edit, :update]
 #   end
 
 #   namespace :admin do
@@ -66,9 +57,6 @@ end
 #   end
 
 # # 会員
-#   root to:'public/homes#top'
-#   get '/about', to:'public/homes#about'
-
 #   resources :items, only: [:index, :show], to: 'public/items#'
 
 #   resource :customers, only: [:edit, :update], to: 'public/customers#'

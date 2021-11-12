@@ -1,7 +1,10 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
+<%= form_with model:@customer,url:customers_path,local:true do |f|%>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
@@ -9,18 +12,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name_kana %><br />
+    <%= f.text_field :first_name_kana %>
   </div>
 
   <div class="field">
     <%= f.label :last_name_kana %><br />
     <%= f.text_field :last_name_kana %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name_kana %><br />
-    <%= f.text_field :first_name_kana %>
   </div>
 
   <div class="field">
@@ -66,5 +64,6 @@
   </div>
 
 <% end %>
+<p>会員登録がお済みの方</p>
+<%=link_to 'こちら', customers_sign_in_path %>
 
-<%= render "customers/shared/links" %>
